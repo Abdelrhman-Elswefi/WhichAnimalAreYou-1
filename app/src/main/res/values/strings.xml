@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Which Animal Are You</string>
+    <string name="napsTextView">I love to take naps</string>
+    <string name="sportsTextView">I play sports</string>
+    <string name="spicyFoodTextView">I like spicy food</string>
+    <string name="submitButton">Run Test</string>
+    <string name="readingTextView">I enjoy reading</string>
+    <string name="travelTextView">I travel often</string>
+    <string name="coldWeatherTextView">I prefer cold weather</string>
+    <string name="driveOrFlyTextView">I would rather drive than fly</string>
+    <string name="cashTextView">I carry cash in my wallet</string>
+    <string-array name="ratings">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
 </resources>
