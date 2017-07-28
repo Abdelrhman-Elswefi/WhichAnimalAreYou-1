@@ -14,17 +14,24 @@ import com.rafalrudzinski.whichanimalareyou.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    Spinner napsSpinner;
-    Spinner sportsSpinner;
-    Spinner spicyFoodSpinner;
-    Spinner readingSpinner;
-    Spinner travelSpinner;
-    Spinner coldWeatherSpinner;
-    Spinner driveOrFlySpinner;
-    Spinner cashSpinner;
-    ArrayAdapter mAdapter;
-    Button runTestButton;
+    private Spinner napsSpinner;
+    private Spinner sportsSpinner;
+    private Spinner spicyFoodSpinner;
+    private Spinner readingSpinner;
+    private Spinner travelSpinner;
+    private Spinner coldWeatherSpinner;
+    private Spinner driveOrFlySpinner;
+    private Spinner cashSpinner;
+    private ArrayAdapter mAdapter;
+    private Button runTestButton;
     private int napsRating;
+    private int sportsRating;
+    private int spicyFoodRating;
+    private int readingRating;
+    private int travelRating;
+    private int coldWeatherRating;
+    private int driveOrFlyRating;
+    private int cashRating;
 
 
     @Override
@@ -35,30 +42,8 @@ public class MainActivity extends AppCompatActivity {
         initializeSpinners();
         setupAdapter();
         setupSpinners();
-
-        runTestButton = (Button) findViewById(R.id.runTestButton);
-
-        runTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startTest();
-            }
-        });
-
-        napsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-                int id = (int) parent.getItemIdAtPosition(position);
-                Toast.makeText(MainActivity.this, parent.getItemAtPosition(position) + " selected at id " + id,Toast.LENGTH_SHORT).show();
-                napsRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        setSpinnerListeners();
+        submitResponse();
     }
 
     private void initializeSpinners() {
@@ -88,9 +73,128 @@ public class MainActivity extends AppCompatActivity {
         cashSpinner.setAdapter(mAdapter);
     }
 
-    private void startTest() {
+    private void setSpinnerListeners() {
+        napsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                int id = (int) parent.getItemIdAtPosition(position);
+                Toast.makeText(MainActivity.this, parent.getItemAtPosition(position) + " selected at id " + id,Toast.LENGTH_SHORT).show();
+                napsRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        sportsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                sportsRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spicyFoodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                spicyFoodRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        readingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                readingRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        travelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                travelRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        coldWeatherSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                coldWeatherRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        driveOrFlySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                driveOrFlyRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        cashSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                cashRating = Integer.valueOf(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void submitResponse() {
+        runTestButton = (Button) findViewById(R.id.runTestButton);
+
+        runTestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent();
+            }
+        });
+    }
+
+
+    private void startIntent() {
         Intent intent = new Intent(MainActivity.this,TestActivity.class);
-        intent.putExtra("rating1", napsRating);
+        intent.putExtra("napsRating", napsRating);
+        intent.putExtra("sportsRating",sportsRating);
+        intent.putExtra("spicyFoodRating",spicyFoodRating);
+        intent.putExtra("readingRating", readingRating);
+        intent.putExtra("travelRating",travelRating);
+        intent.putExtra("coldWeatherRating",coldWeatherRating);
+        intent.putExtra("driveOrFlyRating",driveOrFlyRating);
+        intent.putExtra("cashRating",cashRating);
         startActivity(intent);
     }
 }
